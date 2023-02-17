@@ -10,17 +10,21 @@ int main(void)
 {
 	int digit1, digit2;
 
-	for (digit1 = 0; digit1 < 10; digit1++)
+	for (digit1 = 48; digit1 <= 56; digit1++)
 	{
-		for (digit2 = 0; digit2 < 10; digit2++)
+		for (digit2 = 49; digit2 < 57; digit2++)
 		{
-			putchar((digit1 % 10) + '0');
-			putchar((digit2 % 10) + '0');
+			if (digit2 > digit1)
+			{
+				putchar(digit1);
+				putchar(digit2);
 
-			if (digit1 == 9 && digit2 == 9)
-				continue;
-			putchar(',');
-			putchar(' ');
+				if (digit1 != 56 || digit2 != 57)
+				{
+					putchar(',');
+					putchar(' ');
+				}
+			}
 		}
 	}
 
