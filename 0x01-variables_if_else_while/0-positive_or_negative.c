@@ -2,10 +2,9 @@
 #include <stdlib.h>
 #include <time.h>
 /**
- *main - generate random number
- *Return: 0
- */
-
+* main- generate random number
+* Return: 0
+*/
 int main(void)
 {
 	int n;
