@@ -2,26 +2,26 @@
 /**
  * print_square - print square
  * @#: character printing
+ * @size: size of square
  * Return:0
  */
 void print_square(int size)
 {
-	int h, w;
-
-	if (size > 0);
+	if (size <= 0)
 	{
-		for (h = 0; h <= size; h++)
+		_putchar('\n');
+	}
+	else
+	{
+		int i, j;
+
+		for (i = 0; i < size; i++)
 		{
-			for (w = 0; w <= size; w++)
+			for (j = 0; j < size; j++)
 			{
-				_putchar('#');
-			}
-			if (h == size -1)
-			{
-				continue;
+				_putchar('#')
 			}
 			_putchar('\n');
 		}
 	}
-	_putchar('\n');
 }
