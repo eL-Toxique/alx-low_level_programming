@@ -1,25 +1,25 @@
 #include "main.h"
 /**
  * leet- encodes a string
- * @str:string to encode
+ * @s:string to encode
  * Return:encoded string
  */
-char *leet(char *str)
+char *leet(char *s)
 {
-	char *result = str;
-	char *c = "aAeEoOtTlL";
-	char *r = "4433007711"
+	int i = 0, j;
+	char letters[10] = {'a', 'A', 'e', 'E', 'o', 'O', 't', 'T', 'l', 'L'};
+	char nums[10] = {'4', '4', '3', '3', '0', '0', '7', '7', '1', '1'};
 
-	for (int i = 0; str[i] != '\0'; i++)
+	while (s[i])
 	{
-		for (int j = 0; c[j] != '\0'; j++)
+		for (j = 0; j < 10; j++)
 		{
-			if (str[i] == c[j])
+			if (s[i] == letters[j])
 			{
-				str[i] = r[j];
-				break;
+				s[i] = nums[j];
 			}
 		}
+		i++;
 	}
-	return (result);
+	return (s);
 }
