@@ -6,6 +6,7 @@
 /**
  * print_listint - prints all elements of a list
  * @h: pointetr to head of list
+ *
  * Return:0
  *
  */
