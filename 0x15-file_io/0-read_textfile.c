@@ -1,53 +1,34 @@
-#include <stdlib.h>
-#include <unistd.h>
 #include "main.h"
-#include <fcntl.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 
 /**
- * read_textfile - reads text file and prints it to the POSIX stdoutput
- * @filename: pointer to the name of the file
- * @letters: number of letter it should read and print
- * Return: the actual number of letters it could read and print
+ *read_textfile- Reads a text file and prints it to POSIX stdout.
+ *@filename: A ptr to the name of the file
+ *@letters: The number of letters the function should read and print
+ *Return: if filename is NULL return 0
+ *          - if write fails or does not write
+ *          the expected amount of bytes, return 0
  */
+
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int fd;
-	char *buf;
-	ssize_t s, d;
+	ssize_t opened, wrote, reading;
+	char *buffer;
 
-	if (!filename)
+	if (filename == NULL)
 		return (0);
-
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
+	opened = open(filename, O_RDONLY);
+	if (opened == -1)
 		return (0);
-
-	buf = malloc(sizeof(char) * letters);
-	{
-		if (!buf)
-			return (0);
-	}
-
-	s = read(fd, buf, letters);
-	if (s == -1)
-	{
-		free(buf);
+	buffer = malloc(letters);
+	if (buffer == NULL)
 		return (0);
-	}
-
-	buf[s] = '\0';
-
-	close(fd);
-
-	d = write(STDOUT_FILENO, buf, s);
-	if (d == -1)
-	{
-		free(buf);
+	reading = read(opened, buffer, letters);
+	if (reading == -1)
 		return (0);
-	}
-
-	free(buf);
-	return (d);
+	wrote = write(STDOUT_FILENO, buffer, reading);
+	if (wrote == -1 || wrote != reading)
+		return (0);
+	close(opened);
+	free(buffer);
+	return (wrote);
 }
